@@ -166,7 +166,7 @@ public class ESP32FS implements Tool {
     long spiStart = 0, spiSize = 0, spiPage = 256, spiBlock = 4096;
     String partitions = "";
     
-    if(!PreferencesData.get("target_platform").contentEquals("esp32")){
+    if(!PreferencesData.get("target_platform").contentEquals("ESP32-C3")){
       System.err.println();
       editor.statusError("SPIFFS Not Supported on "+PreferencesData.get("target_platform"));
       return;
@@ -368,9 +368,9 @@ public class ESP32FS implements Tool {
       System.out.println("[SPIFFS] freq   : "+flashFreq);
       System.out.println();
       if(esptool.getAbsolutePath().endsWith(".py"))
-        sysExec(new String[]{pythonCmd, esptool.getAbsolutePath(), "--chip", "esp32", "--baud", uploadSpeed, "--port", serialPort, "--before", "default_reset", "--after", "hard_reset", "write_flash", "-z", "--flash_mode", flashMode, "--flash_freq", flashFreq, "--flash_size", "detect", ""+spiStart, imagePath});
+        sysExec(new String[]{pythonCmd, esptool.getAbsolutePath(), "--chip", "ESP32-C3", "--baud", uploadSpeed, "--port", serialPort, "--before", "default_reset", "--after", "hard_reset", "write_flash", "-z", "--flash_mode", flashMode, "--flash_freq", flashFreq, "--flash_size", "detect", ""+spiStart, imagePath});
       else
-        sysExec(new String[]{esptool.getAbsolutePath(), "--chip", "esp32", "--baud", uploadSpeed, "--port", serialPort, "--before", "default_reset", "--after", "hard_reset", "write_flash", "-z", "--flash_mode", flashMode, "--flash_freq", flashFreq, "--flash_size", "detect", ""+spiStart, imagePath});
+        sysExec(new String[]{esptool.getAbsolutePath(), "--chip", "ESP32-C3", "--baud", uploadSpeed, "--port", serialPort, "--before", "default_reset", "--after", "hard_reset", "write_flash", "-z", "--flash_mode", flashMode, "--flash_freq", flashFreq, "--flash_size", "detect", ""+spiStart, imagePath});
     }
   }
 
